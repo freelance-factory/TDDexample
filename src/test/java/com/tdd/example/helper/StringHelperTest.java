@@ -49,17 +49,25 @@ public class StringHelperTest {
 
         //when
         char[] charArray = stringHelper.createCharArray(a);
-        System.out.println(charArray.toString());
 
         //then
-        Assert.assertEquals("!",charArray[0]);
-        Assert.assertEquals("-",charArray[1]);
-        Assert.assertEquals("*",charArray[2]);
+        Assert.assertEquals(a.charAt(0),charArray[0]);
+        Assert.assertEquals(a.charAt(1),charArray[1]);
+        Assert.assertEquals(a.charAt(2),charArray[2]);
 
     }
 
-    @Test
-    public void nullArray_shouldThrowIllegalArgumentException() {
+    @Test(expected = NullPointerException.class)
+    public void nullArray_shouldThrowNullPointerException() {
+
+        //given
+        String a = null;
+
+        //when
+        stringHelper.createCharArray(a);
+
+        //then
+
     }
 
 }
