@@ -4,6 +4,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.tdd.example.exception.NumberException;
+
 public class StringHelperTest {
 
     private StringHelper stringHelper;
@@ -14,7 +16,7 @@ public class StringHelperTest {
     }
 
     @Test
-    public void emptyString_shouldReturnAnEmptyArray(){
+    public void emptyString_shouldReturnAnEmptyArray() throws NumberException {
 
         //given
         String a = "";
@@ -28,7 +30,7 @@ public class StringHelperTest {
     }
 
     @Test
-    public void xQuantityOfCharactersInTheString_shouldReturnAnArrayOfXCharacters(){
+    public void xQuantityOfCharactersInTheString_shouldReturnAnArrayOfXCharacters() throws NumberException {
 
         //given
         String a = "Juan";
@@ -38,11 +40,13 @@ public class StringHelperTest {
 
         //then
         Assert.assertTrue(a.length() == charArray.length);
-
+        for (int i = 0; i < a.length(); i++) {
+            Assert.assertEquals(a.charAt(i), charArray[i]);
+        }
     }
 
     @Test
-    public void stringWithASymbol_shouldReturnTheSymbolInTheArray(){
+    public void stringWithASymbol_shouldReturnTheSymbolInTheArray() throws NumberException {
 
         //given
         String a = "!-*";
@@ -57,8 +61,8 @@ public class StringHelperTest {
 
     }
 
-    @Test(expected = NullPointerException.class)
-    public void nullArray_shouldThrowNullPointerException() {
+    @Test(expected = NumberException.class)
+    public void nullArray_shouldThrowException() throws NumberException {
 
         //given
         String a = null;
